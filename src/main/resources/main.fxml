@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,10 +18,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tech.nilsson.controllers.MainController">
    <children>
-      <Pane layoutX="388.0" layoutY="14.0" prefHeight="94.0" prefWidth="200.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
+      <Pane layoutX="409.0" layoutY="14.0" prefHeight="94.0" prefWidth="179.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
          <children>
-            <TextField disable="true" editable="false" layoutX="14.0" layoutY="26.0" prefHeight="27.0" prefWidth="172.0" text="5 + 7" />
-            <TextField disable="true" editable="false" layoutX="14.0" layoutY="58.0" prefHeight="27.0" prefWidth="172.0" text="8 / 4" />
+            <TextField fx:id="simpleAttentionIncreaserTextField" editable="false" layoutX="14.0" layoutY="26.0" prefHeight="27.0" prefWidth="150.0" text="5 + 7" />
+            <TextField fx:id="hardAttentionIncreaserTextField" editable="false" layoutX="14.0" layoutY="58.0" prefHeight="27.0" prefWidth="150.0" text="8 / 4" />
             <Label layoutX="14.0" layoutY="7.0" text="Attention increasers" textFill="#777777">
                <font>
                   <Font size="11.0" />
@@ -28,29 +29,30 @@
             </Label>
          </children>
       </Pane>
-      <ProgressBar fx:id="attentionProgressBar" layoutX="209.0" layoutY="14.0" prefHeight="20.0" prefWidth="172.0" progress="0.82" />
-      <ProgressBar fx:id="meditationProgressBar" layoutX="209.0" layoutY="43.0" prefHeight="20.0" prefWidth="172.0" progress="0.35" />
+      <ProgressBar fx:id="attentionProgressBar" layoutX="209.0" layoutY="14.0" prefHeight="20.0" prefWidth="188.0" progress="0.82" />
+      <ProgressBar fx:id="meditationProgressBar" layoutX="209.0" layoutY="43.0" prefHeight="20.0" prefWidth="188.0" progress="0.35" />
       <Label layoutX="116.0" layoutY="16.0" text="Attention:" textFill="#777777" />
       <Label layoutX="116.0" layoutY="45.0" text="Meditation:" textFill="#777777" />
-      <Pane layoutX="117.0" layoutY="73.0" prefHeight="66.0" prefWidth="264.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
+      <Pane layoutX="117.0" layoutY="73.0" prefHeight="66.0" prefWidth="282.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
          <children>
             <Label layoutX="14.0" layoutY="7.0" text="Blink strength thresholds" textFill="#777777">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <TextField layoutX="52.0" layoutY="27.0" prefHeight="27.0" prefWidth="75.0" promptText="Strong blink" text="70" />
-            <TextField layoutX="172.0" layoutY="27.0" prefHeight="27.0" prefWidth="84.0" promptText="Normal blink" text="40" />
-            <Label layoutX="16.0" layoutY="34.0" text="Strong" textFill="#777777">
+            <TextField fx:id="strongBlinkThresholdTextField" layoutX="137.0" layoutY="27.0" prefHeight="27.0" prefWidth="44.0" promptText="Strong blink" text="150" />
+            <TextField fx:id="weakBlinkThresholdTextField" layoutX="53.0" layoutY="27.0" prefHeight="27.0" prefWidth="44.0" promptText="Normal blink" text="50" />
+            <Label layoutX="101.0" layoutY="34.0" text="Strong" textFill="#777777">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
-            <Label layoutX="133.0" layoutY="34.0" text="Normal" textFill="#777777">
+            <Label layoutX="14.0" layoutY="34.0" text="Normal" textFill="#777777">
                <font>
                   <Font size="11.0" />
                </font>
             </Label>
+            <Button layoutX="195.0" layoutY="27.0" mnemonicParsing="false" onAction="#onSetBlinkThreshold" prefHeight="27.0" prefWidth="73.0" text="Set" />
          </children>
       </Pane>
       <ImageView fitHeight="75.0" fitWidth="75.0" layoutX="11.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
@@ -65,7 +67,7 @@
       </Label>
       <Pane layoutY="152.0" prefHeight="192.0" prefWidth="603.0" style="-fx-background-color: #ccc;">
          <children>
-            <Pane layoutX="9.0" layoutY="14.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: #8e44ad#8e44ad; -fx-border-width: 3; -fx-border-radius: 4;">
+            <Pane fx:id="bedroomLampDevice" layoutX="9.0" layoutY="14.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-width: 1; -fx-border-radius: 4;">
                <children>
                   <Label layoutX="10.0" layoutY="9.0" text="Bedroom Lamp">
                      <font>
@@ -93,7 +95,7 @@
                   <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" text="Turn off" />
                </children>
             </Pane>
-            <Pane layoutX="216.0" layoutY="16.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
+            <Pane fx:id="bathroomLampDevice" layoutX="216.0" layoutY="16.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
                <children>
                   <Label layoutX="10.0" layoutY="9.0" text="Bathroom lamp">
                      <font>
@@ -121,7 +123,7 @@
                   <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" text="Turn off" />
                </children>
             </Pane>
-            <Pane layoutX="422.0" layoutY="17.0" prefHeight="159.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
+            <Pane fx:id="tvDevice" layoutX="422.0" layoutY="17.0" prefHeight="159.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
                <children>
                   <Label layoutX="10.0" layoutY="9.0" text="TV">
                      <font>
@@ -151,14 +153,14 @@
                         </RadialGradient>
                      </fill>
                   </Circle>
-                  <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" text="Turn on" />
+                  <Button fx:id="turnOnTvButton" layoutX="10.0" layoutY="38.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" text="Turn on" />
                   <Button layoutX="8.0" layoutY="76.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Vol -" />
                   <Button layoutX="89.0" layoutY="76.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="Vol +" />
                   <Button layoutX="8.0" layoutY="118.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="P -" />
                   <Button layoutX="89.0" layoutY="118.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="74.0" text="P +" />
                </children>
             </Pane>
-            <Pane layoutX="216.0" layoutY="101.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
+            <Pane fx:id="alarmDevice" layoutX="216.0" layoutY="101.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
                <children>
                   <Label layoutX="10.0" layoutY="9.0" text="Alarm">
                      <font>
@@ -186,7 +188,7 @@
                   <Button layoutX="10.0" layoutY="38.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="150.0" text="Turn off" />
                </children>
             </Pane>
-            <Pane layoutX="10.0" layoutY="102.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
+            <Pane fx:id="bedroomFanDevice" layoutX="10.0" layoutY="102.0" prefHeight="75.0" prefWidth="172.0" style="-fx-border-color: gray; -fx-border-radius: 4;">
                <children>
                   <Label layoutX="10.0" layoutY="9.0" text="Bedroom fan">
                      <font>
@@ -218,9 +220,14 @@
       </Pane>
       <Label fx:id="attentionValueLabel" layoutX="187.0" layoutY="16.0" text="80" textFill="#777777" />
       <Label fx:id="meditationValueLabel" layoutX="187.0" layoutY="44.0" text="30" textFill="#777777" />
-      <ComboBox layoutX="389.0" layoutY="111.0" prefHeight="27.0" prefWidth="199.0" promptText="Interaction Scheme" visibleRowCount="2" />
       <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="311.0" layoutY="351.0" prefHeight="17.0" prefWidth="274.0" text="Executing command: FORWARD" textAlignment="RIGHT" textFill="#777777" />
       <ProgressBar fx:id="signalQualityProgressBar" layoutX="91.0" layoutY="349.0" prefHeight="20.0" prefWidth="172.0" progress="0.35" />
       <Label layoutX="12.0" layoutY="349.0" text="Signal quality" textFill="#777777" />
+      <RadioButton fx:id="lowBlinkRadioButton" layoutX="410.0" layoutY="120.0" mnemonicParsing="false" onAction="#onChangeInteractionScheme" text="Low Blink">
+         <toggleGroup>
+            <ToggleGroup fx:id="interactionScheme" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="highBlinkRadioButton" layoutX="507.0" layoutY="120.0" mnemonicParsing="false" onAction="#onChangeInteractionScheme" selected="true" text="High Blink" toggleGroup="$interactionScheme" />
    </children>
 </AnchorPane>

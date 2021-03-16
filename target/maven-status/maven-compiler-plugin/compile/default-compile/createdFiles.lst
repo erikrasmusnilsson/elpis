@@ -1,2 +1,11 @@
+tech/nilsson/interaction_schemes/HighBlinkingInteractionScheme$1.class
+tech/nilsson/utils/intervals/ChangeAttentionIncreasersInterval.class
+tech/nilsson/interaction_schemes/LowBlinkingInteractionScheme.class
+tech/nilsson/utils/SelectionManager.class
 tech/nilsson/controllers/MainController.class
+tech/nilsson/utils/Interval.class
 tech/nilsson/Main.class
+tech/nilsson/utils/SelectionManager$Callback.class
+tech/nilsson/interaction_schemes/InteractionScheme.class
+tech/nilsson/interaction_schemes/HighBlinkingInteractionScheme.class
+tech/nilsson/utils/Interval$Callback.class
